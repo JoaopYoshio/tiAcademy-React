@@ -1,2 +1,2 @@
 # tiAcademy-React
-Repositório criado para o ciclo 4 da tiAcademy
+Repositório criado para desenvolver a parte visual do CRUD
