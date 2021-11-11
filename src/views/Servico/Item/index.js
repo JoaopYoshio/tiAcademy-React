@@ -5,20 +5,24 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const ListarCli = () => {
+export const Item = (props) => {
+
+    // console.log(props.match.params.id);
 
     const [data, setData] = useState([]);
+
+    const[id, setId] = useState(props.match.params.id)
 
     const [status, setStatus] = useState({
         type: '',
         message: ''
     });
 
-    const getClientes = async () => {
-        await axios.get(api + "/listaclientes")
+    const getItens = async () => {
+        await axios.get(api + "/servico/"+id+"/pedidos")
             .then((response) => {
-                console.log(response.data.clientes);
-                setData(response.data.clientes)
+                console.log(response.data.item);
+                setData(response.data.item)
             })
             .catch(() => {
                 setStatus({
@@ -30,15 +34,15 @@ export const ListarCli = () => {
     };
 
     useEffect(() => {
-        getClientes();
-    }, [])
+        getItens();
+    }, [id])
 
 
     return (
         <div>
             <Container>
                 <div>
-                    <h1>Visualizar informações dos clientes</h1>
+                    <h1>Pedidos do serviço</h1>
                 </div>
                 {status.type == 'error' ?
                     <Alert color="danger">
@@ -49,25 +53,17 @@ export const ListarCli = () => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Endereço</th>
-                            <th>Cidade</th>
-                            <th>UF</th>
-                            <th>Nascimneto</th>
-                            <th>ClienteDesde</th>
+                            <th>Pedido</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.nome}</td>
-                                <td>{item.endereco}</td>
-                                <td>{item.cidade}</td>
-                                <td>{item.uf}</td>
-                                <td>{item.nascimento}</td>
-                                <td>{item.clienteDesde}</td>
+                            <tr key={item.ServicoId}>
+                                <td>{item.PedidoId}</td>
+                                <td>{item.quantidade}</td>
+                                <td>{item.valor}</td>
                             </tr>
                         ))}
                     </tbody>

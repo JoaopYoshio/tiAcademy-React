@@ -14,7 +14,7 @@ export const Home = () => {
                         </a>
                     </div>
                     <div className="p-2">
-                        <a href="/listar-pedido"
+                        <a href="/listar-pedidos"
                             className="btn btn-outline-success btn-sm">
                             Pedido
                         </a>
@@ -23,6 +23,18 @@ export const Home = () => {
                         <a href="/listar-servico"
                             className="btn btn-outline-success btn-sm">
                             Serviço
+                        </a>
+                    </div>
+                    <div className="p-2">
+                        <a href="/"
+                            className="btn btn-outline-success btn-sm">
+                            Compra
+                        </a>
+                    </div>
+                    <div className="p-2">
+                        <a href="/"
+                            className="btn btn-outline-success btn-sm">
+                            Produto
                         </a>
                     </div>
                 </div>
