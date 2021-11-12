@@ -5,6 +5,7 @@ import { Home } from './views/Home';
 import { ListarCli } from './views/Cliente/Listar';
 import { ListarServ } from './views/Servico/Listar';
 import { CadastrarServ } from './views/Servico/Cadastrar';
+import { CadastrarCli } from './views/Cliente/Cadastrar';
 import { ListarPed } from './views/Pedido/Listar'
 import { Menu } from './components/Menu';
 import { Item } from './views/Servico/Item'
@@ -18,7 +19,8 @@ function App() {
           <Route  exact path="/" component={Home}/>
           <Route path="/listar-cliente" component={ ListarCli }/>
           <Route path="/listar-servico" component={ ListarServ }/>
-          <Route path="/cadastrar-servico" component= {CadastrarServ}/>
+          <Route path="/cadastrar-servico" component={ CadastrarServ }/>
+          <Route path="/cadastrar-cliente" component={ CadastrarCli }/>
           <Route path="/listar-pedidos" component={ ListarPed }/>
           <Route path="/listar-pedido/:id" component={ Item }/>
         </Switch>

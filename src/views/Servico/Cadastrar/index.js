@@ -31,7 +31,7 @@ export const CadastrarServ = () => {
                 }
             })
             .catch(() => {
-                console.log("Erro: Sem conexção com a API")
+                console.log("Erro: Sem conexação com a API")
             })
 
     }
