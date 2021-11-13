@@ -14,6 +14,9 @@ import { Item } from './views/Servico/Item';
 import { EditarCli } from './views/Cliente/Editar';
 import { ExcluirCli } from './views/Cliente/Excluir';
 import { PedidosCliente } from './views/Cliente/Pedidos'
+import { ListarProd } from'./views/Produto/Listar'
+import { CadastrarProd } from'./views/Produto/Cadastrar'
+import { ListarCompr } from './views/Compra/Listar'
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route path="/editar-cliente" component={ EditarCli }/>
           <Route path="/excluir-cliente" component={ ExcluirCli }/>
           <Route path="/pedidos-clientes" component={ PedidosCliente}/>
+          <Route path="/listar-produto" component={ ListarProd }/>
+          <Route path="/cadastrar-produto" component={ CadastrarProd }/>
+          <Route path="/listar-compra" component={ ListarCompr }/>
         </Switch>
       </Router>
     </div>

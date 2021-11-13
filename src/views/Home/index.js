@@ -26,15 +26,15 @@ export const Home = () => {
                         </a>
                     </div>
                     <div className="p-2">
-                        <a href="/"
+                        <a href="/listar-produto"
                             className="btn btn-outline-success btn-sm">
-                            Compra
+                            Produto
                         </a>
                     </div>
                     <div className="p-2">
-                        <a href="/"
+                        <a href="/listar-compra"
                             className="btn btn-outline-success btn-sm">
-                            Produto
+                            Compra
                         </a>
                     </div>
                 </div>

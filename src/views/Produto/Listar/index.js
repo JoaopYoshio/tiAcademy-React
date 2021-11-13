@@ -5,7 +5,7 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const ListarCli = () => {
+export const ListarProd = () => {
 
     const [data, setData] = useState([]);
 
@@ -14,11 +14,11 @@ export const ListarCli = () => {
         message: ''
     });
 
-    const getClientes = async () => {
-        await axios.get(api + "/listaclientes")
+    const getProdutos = async () => {
+        await axios.get(api + "/listasprodutos")
             .then((response) => {
-                console.log(response.data.clientes);
-                setData(response.data.clientes)
+                console.log(response.data.produtos);
+                setData(response.data.produtos)
             })
             .catch(() => {
                 setStatus({
@@ -30,7 +30,7 @@ export const ListarCli = () => {
     };
 
     useEffect(() => {
-        getClientes();
+        getProdutos();
     }, [])
 
 
@@ -39,10 +39,10 @@ export const ListarCli = () => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1>Visualizar informações dos clientes</h1>
+                        <h1>Visualizar informações dos Produtos</h1>
                     </div>
-                    <div className="m-auto p-2">
-                        <Link to="/cadastrar-cliente" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
+                    <div className=" m-auto p-2">
+                        <Link to="cadastrar-produto" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
                     {status.type == 'error' ?
                         <Alert color="danger">
@@ -50,40 +50,34 @@ export const ListarCli = () => {
                         </Alert> : ""}
                 </div>
 
-
                 <Table striped>
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>Endereço</th>
-                            <th>Cidade</th>
-                            <th>UF</th>
-                            <th>Nascimneto</th>
-                            <th>ClienteDesde</th>
-                            <th>Ações</th>
+                            <th>Descrição</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(cli => (
-                            <tr key={cli.id}>
-                                <td>{cli.id}</td>
-                                <td>{cli.nome}</td>
-                                <td>{cli.endereco}</td>
-                                <td>{cli.cidade}</td>
-                                <td>{cli.uf}</td>
-                                <td>{cli.nascimento}</td>
-                                <td>{cli.clienteDesde}</td>
+                        {data.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.nome}</td>
+                                <td>{item.descricao}</td>
                                 <td className="texte-center">
-                                    <Link to={"/pedidos-clientes/" + cli.id}
+                                    <Link to={"listar-compra/" + item.id}
                                         className="btn btn-outline-primary btn-sm">
-                                        Consultar</Link>
-                                    <Link to={"/editar-cliente/" + cli.id}
+                                        Consultar
+                                    </Link>
+                                    <Link to={"editar-produto/" + item.id}
                                         className="btn btn-outline-warning btn-sm">
-                                        Editar</Link>
-                                        <Link to={"/excluir-cliente/" + cli.id}
+                                        Editar
+                                    </Link>
+                                    <Link to={"excluir-produto/" + item.id}
                                         className="btn btn-outline-danger btn-sm">
-                                        Excluir</Link>
+                                        Excluir
+                                    </Link>
                                 </td>
                             </tr>
                         ))}
