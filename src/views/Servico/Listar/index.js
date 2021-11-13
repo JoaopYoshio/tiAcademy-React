@@ -70,6 +70,14 @@ export const ListarServ = () => {
                                         className="btn btn-outline-primary btn-sm">
                                         Consultar
                                     </Link>
+                                    <Link to={"editar-servico/" + item.id}
+                                        className="btn btn-outline-warning btn-sm">
+                                        Editar
+                                    </Link>
+                                    <Link to={"excluir-servico/" + item.id}
+                                        className="btn btn-outline-danger btn-sm">
+                                        Excluir
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

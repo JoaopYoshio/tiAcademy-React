@@ -5,7 +5,7 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const ListarCli = () => {
+export const PedidosCliente = () => {
 
     const [data, setData] = useState([]);
 
@@ -65,25 +65,20 @@ export const ListarCli = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(cli => (
-                            <tr key={cli.id}>
-                                <td>{cli.id}</td>
-                                <td>{cli.nome}</td>
-                                <td>{cli.endereco}</td>
-                                <td>{cli.cidade}</td>
-                                <td>{cli.uf}</td>
-                                <td>{cli.nascimento}</td>
-                                <td>{cli.clienteDesde}</td>
-                                <td className="texte-center">
-                                    <Link to={"/pedidos-clientes/" + cli.id}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar</Link>
-                                    <Link to={"/editar-cliente/" + cli.id}
-                                        className="btn btn-outline-warning btn-sm">
-                                        Editar</Link>
-                                        <Link to={"/excluir-cliente/" + cli.id}
-                                        className="btn btn-outline-danger btn-sm">
-                                        Excluir</Link>
+                        {data.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.nome}</td>
+                                <td>{item.endereco}</td>
+                                <td>{item.cidade}</td>
+                                <td>{item.uf}</td>
+                                <td>{item.nascimento}</td>
+                                <td>{item.clienteDesde}</td>
+                                <td className="btn btn-outline-primaty btn-sm">
+                                    <Link to="/pedidos-clientes/:id">Consultar</Link>
+                                </td>
+                                <td className="btn btn-outline-warning btn-sm">
+                                    <Link to="/editar-cliente/:id">Editar</Link>
                                 </td>
                             </tr>
                         ))}
