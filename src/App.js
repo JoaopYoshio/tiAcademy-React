@@ -34,9 +34,9 @@ function App() {
           <Route path="/editar-servico" component={ EditarServ }/>
           <Route path="/excluir-servico" component={ ExcluirServ }/>
           <Route path="/listar-pedidos" component={ ListarPed }/>
-          <Route path="/editar-cliente" component={ EditarCli }/>
-          <Route path="/excluir-cliente" component={ ExcluirCli }/>
-          <Route path="/pedidos-clientes" component={ PedidosCliente}/>
+          <Route path="/editar-cliente/:id" component={ EditarCli }/>
+          <Route path="/excluir-cliente/:id" component={ ExcluirCli }/>
+          <Route path="/pedidos-cliente/:id" component={ PedidosCliente}/>
           <Route path="/listar-produto" component={ ListarProd }/>
           <Route path="/cadastrar-produto" component={ CadastrarProd }/>
           <Route path="/listar-compra" component={ ListarCompr }/>

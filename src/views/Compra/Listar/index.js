@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
@@ -40,7 +39,7 @@ export const ListarCompr = () => {
                 <div>
                     <h1>Visualizar informações das compras</h1>
                 </div>
-                {status.type == 'error' ?
+                {status.type === 'error' ?
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}

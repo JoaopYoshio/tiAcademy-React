@@ -40,7 +40,10 @@ export const ListarPed = () => {
                 <div>
                     <h1>Visualizar informações dos pedidos</h1>
                 </div>
-                {status.type == 'error' ?
+                <div className="p-2">
+                    <Link to="/cadastrar-pedidos" className="btn btn-outline-success btn-sm">Cadastrar</Link>
+                </div>
+                {status.type === 'error' ?
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}
@@ -50,16 +53,16 @@ export const ListarPed = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Data</th>
                             <th>ClientId</th>
+                            <th>Data</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.data}</td>
-                                <td>{item.ClienteId}</td>
+                        {data.map(ped => (
+                            <tr key={ped.id}>
+                                <td>{ped.id}</td>
+                                <td>{ped.ClienteId}</td>
+                                <td>{ped.data}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -29,6 +29,29 @@ export const ListarCli = () => {
             });
     };
 
+    const excluirCliente = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluircliente/" + id , { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getClientes();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
+
     useEffect(() => {
         getClientes();
     }, [])
@@ -44,7 +67,7 @@ export const ListarCli = () => {
                     <div className="m-auto p-2">
                         <Link to="/cadastrar-cliente" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
-                    {status.type == 'error' ?
+                    {status.type === 'error' ?
                         <Alert color="danger">
                             {status.message}
                         </Alert> : ""}
@@ -75,15 +98,18 @@ export const ListarCli = () => {
                                 <td>{cli.nascimento}</td>
                                 <td>{cli.clienteDesde}</td>
                                 <td className="texte-center">
-                                    <Link to={"/pedidos-clientes/" + cli.id}
+                                    <Link to={"/pedidos-cliente/" + cli.id}
                                         className="btn btn-outline-primary btn-sm">
-                                        Consultar</Link>
+                                        Consultar
+                                    </Link>
+
                                     <Link to={"/editar-cliente/" + cli.id}
                                         className="btn btn-outline-warning btn-sm">
-                                        Editar</Link>
-                                        <Link to={"/excluir-cliente/" + cli.id}
-                                        className="btn btn-outline-danger btn-sm">
-                                        Excluir</Link>
+                                        Editar
+                                    </Link>
+                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirCliente(cli.id)}>
+                                        Excluir
+                                    </span>
                                 </td>
                             </tr>
                         ))}

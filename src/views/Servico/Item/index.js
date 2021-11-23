@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
@@ -11,7 +10,7 @@ export const Item = (props) => {
 
     const [data, setData] = useState([]);
 
-    const[id, setId] = useState(props.match.params.id)
+    const[id] = useState(props.match.params.id)
 
     const [status, setStatus] = useState({
         type: '',
@@ -44,7 +43,7 @@ export const Item = (props) => {
                 <div>
                     <h1>Pedidos do serviço</h1>
                 </div>
-                {status.type == 'error' ?
+                {status.type === 'error' ?
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}

@@ -44,7 +44,7 @@ export const ListarServ = () => {
                     <div className=" m-auto p-2">
                         <Link to="cadastrar-servico" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
-                    {status.type == 'error' ?
+                    {status.type === 'error' ?
                         <Alert color="danger">
                             {status.message}
                         </Alert> : ""}
