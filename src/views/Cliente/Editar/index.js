@@ -8,8 +8,6 @@ export const EditarCli = (props) => {
 
     console.log(props.match.params.id)
 
-    const [data, setData] = useState([]);
-
     const [id] = useState(props.match.params.id)
 
     const [cliente, setCliente] = useState({
@@ -35,7 +33,7 @@ export const EditarCli = (props) => {
         await axios.get(api + "/cliente/" + id)
             .then((response) => {
                 console.log(response.data.cli)
-                setData(response.data.cli)
+                setCliente(response.data.cli)
             })
             .catch(() => {
                 setStatus({
@@ -66,7 +64,7 @@ export const EditarCli = (props) => {
             })
     }
 
-    const editCLiente = async e => {
+    const editCliente = async e => {
         e.preventDefault();
         console.log("Editar")
 
@@ -112,7 +110,7 @@ export const EditarCli = (props) => {
                 {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
-                <Form className="p-2" onSubmit={editCLiente}>
+                <Form className="p-2" onSubmit={editCliente}>
                     <FormGroup className="p2">
                         <Label>
                             Nome
@@ -121,7 +119,7 @@ export const EditarCli = (props) => {
                             name="nome"
                             placeholder="Nome do Cliente"
                             type="text"
-                            defaultValue= {data.nome}
+                            defaultValue= {cliente.nome}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -133,7 +131,7 @@ export const EditarCli = (props) => {
                             name="endereco"
                             placeholder="Endereço do Cliente"
                             type="text"
-                            defaultValue= {data.endereco}
+                            defaultValue= {cliente.endereco}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -145,7 +143,7 @@ export const EditarCli = (props) => {
                             name="cidade"
                             placeholder="Cidade do Cliente"
                             type="text"
-                            defaultValue= {data.cidade}
+                            defaultValue= {cliente.cidade}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -157,7 +155,7 @@ export const EditarCli = (props) => {
                             name="uf"
                             placeholder="UF"
                             type="text"
-                            defaultValue= {data.uf}
+                            defaultValue= {cliente.uf}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -169,7 +167,7 @@ export const EditarCli = (props) => {
                             name="nascimento"
                             placeholder="Nascimento do Cliente"
                             type="date"
-                            defaultValue= {data.nascimento}
+                            defaultValue= {cliente.nascimento}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -181,7 +179,7 @@ export const EditarCli = (props) => {
                             name="clienteDesde"
                             placeholder="Cliente Desde"
                             type="date"
-                            defaultValue= {data.clienteDesde}
+                            defaultValue= {cliente.clienteDesde}
                             onChange={valorInput}
                         />
                     </FormGroup>
