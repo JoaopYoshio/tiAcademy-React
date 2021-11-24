@@ -47,6 +47,7 @@ export const ListarPed = () => {
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}
+                <hr className="m-1"></hr>
 
 
                 <Table striped>

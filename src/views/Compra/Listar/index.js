@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
@@ -39,10 +40,14 @@ export const ListarCompr = () => {
                 <div>
                     <h1>Visualizar informações das compras</h1>
                 </div>
+                <div className="p-2">
+                    <Link to="/cadastrar-compras" className="btn btn-outline-success btn-sm">Cadastrar</Link>
+                </div>
                 {status.type === 'error' ?
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}
+                <hr className="m-1"></hr>
 
 
                 <Table striped>

@@ -13,10 +13,12 @@ import { Menu } from './components/Menu';
 import { Item } from './views/Servico/Item';
 import { EditarCli } from './views/Cliente/Editar';
 import { ExcluirCli } from './views/Cliente/Excluir';
-import { PedidosCliente } from './views/Cliente/Pedidos'
+import { PedidosCliente } from './views/Cliente/Consulta'
 import { ListarProd } from'./views/Produto/Listar'
 import { CadastrarProd } from'./views/Produto/Cadastrar'
 import { ListarCompr } from './views/Compra/Listar'
+import { CadastrarPed } from './views/Pedido/Cadastrar'
+import{ CadastrarCompra } from './views/Compra/Cadastrar'
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/listar-servico" component={ ListarServ }/>
           <Route path="/cadastrar-servico" component={ CadastrarServ }/>
           <Route path="/cadastrar-cliente" component={ CadastrarCli }/>
+          <Route path="/cadastrar-pedidos" component={ CadastrarPed }/>
+          <Route path="/cadastrar-compras" component={ CadastrarCompra}/>
           <Route path="/listar-pedidos" component={ ListarPed }/>
           <Route path="/listar-pedido/:id" component={ Item }/>
           <Route path="/editar-servico" component={ EditarServ }/>

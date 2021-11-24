@@ -121,7 +121,7 @@ export const EditarCli = (props) => {
                             name="nome"
                             placeholder="Nome do Cliente"
                             type="text"
-                            // defaultValue= {data.nome}
+                            defaultValue= {data.nome}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -133,7 +133,7 @@ export const EditarCli = (props) => {
                             name="endereco"
                             placeholder="Endereço do Cliente"
                             type="text"
-                            // defaultValue= {data.endereco}
+                            defaultValue= {data.endereco}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -145,7 +145,7 @@ export const EditarCli = (props) => {
                             name="cidade"
                             placeholder="Cidade do Cliente"
                             type="text"
-                            // defaultValue= {data.cidade}
+                            defaultValue= {data.cidade}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -157,7 +157,7 @@ export const EditarCli = (props) => {
                             name="uf"
                             placeholder="UF"
                             type="text"
-                            // defaultValue= {data.uf}
+                            defaultValue= {data.uf}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -169,7 +169,7 @@ export const EditarCli = (props) => {
                             name="nascimento"
                             placeholder="Nascimento do Cliente"
                             type="date"
-                            // defaultValue= {data.nascimento}
+                            defaultValue= {data.nascimento}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -181,7 +181,7 @@ export const EditarCli = (props) => {
                             name="clienteDesde"
                             placeholder="Cliente Desde"
                             type="date"
-                            // defaultValue= {data.clienteDesde}
+                            defaultValue= {data.clienteDesde}
                             onChange={valorInput}
                         />
                     </FormGroup>

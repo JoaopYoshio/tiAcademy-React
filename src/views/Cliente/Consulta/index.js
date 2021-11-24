@@ -9,6 +9,7 @@ export const PedidosCliente = (props) => {
     console.log(props.match.params.id)
 
     const [data, setData] = useState([]);
+    const [compra, setCompra] = useState([]);
 
     const [id] = useState(props.match.params.id);
 
@@ -31,6 +32,20 @@ export const PedidosCliente = (props) => {
                     })
                 });
         }
+        const getCompras = async () => {
+            await axios.get(api + "/cliente/" + id + "/compras")
+                .then((response) => {
+                    console.log(response.data.compras)
+                    setCompra(response.data.compras)
+                })
+                .catch(() => {
+                    setStatus({
+                        type: 'error',
+                        message: 'Erro: sem conexão com a API.'
+                    })
+                });
+        }
+        getCompras();
         getPedidos();
     }, [id])
 
@@ -38,7 +53,7 @@ export const PedidosCliente = (props) => {
         <div>
             <Container>
                 <div>
-                    <h1>Visualizar informações dos pedidos</h1>
+                    <h1>Visualizar informações dos pedidos e compras</h1>
                 </div>
                 <div className="d-flex">
                     <div className="p-2">
@@ -53,7 +68,9 @@ export const PedidosCliente = (props) => {
                         {status.message}
                     </Alert> : ""}
 
-
+                <div>
+                    <h3>Pedidos</h3>
+                </div>
                 <Table striped>
                     <thead>
                         <tr>
@@ -67,6 +84,37 @@ export const PedidosCliente = (props) => {
                             <tr key={ped.id}>
                                 <td>{ped.id}</td>
                                 <td>{ped.data}</td>
+                                <td className="texte-center">
+                                    <Link to={"/"}
+                                        className="btn btn-outline-primary btn-sm">
+                                        Consultar</Link>
+                                    <Link to={"/"}
+                                        className="btn btn-outline-warning btn-sm">
+                                        Editar</Link>
+                                    <Link to={"/"}
+                                        className="btn btn-outline-danger btn-sm">
+                                        Excluir</Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+                <div>
+                    <h3>Compras</h3>
+                </div>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {compra.map(comp => (
+                            <tr key={comp.id}>
+                                <td>{comp.id}</td>
+                                <td>{comp.data}</td>
                                 <td className="texte-center">
                                     <Link to={"/"}
                                         className="btn btn-outline-primary btn-sm">
