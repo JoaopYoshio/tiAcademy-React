@@ -11,7 +11,6 @@ import { Menu } from './components/Header/Menu';
 import { Footer } from './components/Footer/Footer';
 import { Item } from './views/Servico/Item';
 import { EditarCli } from './views/Cliente/Editar';
-import { ExcluirCli } from './views/Cliente/Excluir';
 import { PedidosCliente } from './views/Cliente/Consulta'
 import { ListarProd } from './views/Produto/Listar'
 import { CadastrarProd } from './views/Produto/Cadastrar'
@@ -44,7 +43,6 @@ function App() {
             <Route path="/editar-produto/:id" component={EditarProd} />
             <Route path="/listar-pedidos" component={ListarPed} />
             <Route path="/editar-cliente/:id" component={EditarCli} />
-            <Route path="/excluir-cliente/:id" component={ExcluirCli} />
             <Route path="/pedidos-cliente/:id" component={PedidosCliente} />
             <Route path="/listar-produto" component={ListarProd} />
             <Route path="/cadastrar-produto" component={CadastrarProd} />
