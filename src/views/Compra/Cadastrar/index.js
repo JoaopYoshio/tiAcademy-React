@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Alert, Button, Container, Form, FormGroup, Input, Label } from "reactstrap"
 import { api } from "../../../config";
 
-export const CadastrarCompra= () => {
+export const CadastrarCompra = () => {
 
     const cadCompras = async e => {
         // console.log("Cadastrar");
@@ -39,6 +39,11 @@ export const CadastrarCompra= () => {
         ClienteId: '',
         data: ''
     });
+
+    const limpar = () => setCompra({
+        ClienteId: '',
+        data: ''
+    })
 
     const [status, setStatus] = useState({
         type: '',
@@ -92,6 +97,9 @@ export const CadastrarCompra= () => {
 
                 <Button type="submit" outline color="success">
                     Cadastrar
+                </Button>
+                <Button type="reset" outline color="danger" onClick={limpar} className="m-2">
+                    Limpar
                 </Button>
             </Form>
         </Container>

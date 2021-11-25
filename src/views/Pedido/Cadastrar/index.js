@@ -40,6 +40,11 @@ export const CadastrarPed = () => {
         data: ''
     });
 
+    const limpar = () => setPedido({
+        ClienteId: '',
+        data: ''
+    })
+
     const [status, setStatus] = useState({
         type: '',
         message: ''
@@ -69,7 +74,7 @@ export const CadastrarPed = () => {
             <Form className="p-2" onSubmit={cadPedidos}>
                 <FormGroup className="p2">
                     <Label>
-                        Nome
+                        Cliente ID
                     </Label>
                     <Input
                         name="ClienteId"
@@ -92,6 +97,9 @@ export const CadastrarPed = () => {
 
                 <Button type="submit" outline color="success">
                     Cadastrar
+                </Button>
+                <Button type="reset" outline color="danger" onClick={limpar} className="m-2">
+                    Limpar
                 </Button>
             </Form>
         </Container>

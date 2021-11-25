@@ -8,6 +8,7 @@ import { api } from "../../../config";
 export const ListarCompr = () => {
 
     const [data, setData] = useState([]);
+    const [item, setItem] = useState([]);
 
     const [status, setStatus] = useState({
         type: '',
@@ -29,8 +30,45 @@ export const ListarCompr = () => {
             });
     };
 
+    const getItens = async () => {
+        await axios.get(api + "/listaitenscompras")
+            .then((response) => {
+                setItem(response.data.itemcompras)
+            })
+            .catch(() => {
+                setStatus({
+                    type: 'error',
+                    message: 'Erro: sem conexão com a API.'
+                })
+                // console.log("Sem conexão com a API")
+            });
+    };
+
+    const excluirCompra = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluircompra/" + id, { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getCompras();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
     useEffect(() => {
         getCompras();
+        getItens();
     }, [])
 
 
@@ -40,30 +78,61 @@ export const ListarCompr = () => {
                 <div>
                     <h1>Visualizar informações das compras</h1>
                 </div>
-                <div className="p-2">
-                    <Link to="/cadastrar-compras" className="btn btn-outline-success btn-sm">Cadastrar</Link>
-                </div>
+
                 {status.type === 'error' ?
                     <Alert color="danger">
                         {status.message}
                     </Alert> : ""}
                 <hr className="m-1"></hr>
-
-
+                <div className="p-2">
+                    <Link to="/cadastrar-compras" className="btn btn-outline-success btn-sm">Cadastrar</Link>
+                </div>
                 <Table striped>
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Data</th>
                             <th>ClientId</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(item => (
+                        {data.map(comp => (
+                            <tr key={comp.id}>
+                                <td>{comp.id}</td>
+                                <td>{comp.data}</td>
+                                <td>{comp.ClienteId}</td>
+                                <td className="texte-center">
+                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirCompra(comp.id)}>
+                                        Excluir
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+                <div>
+                    <h3>Itens Compras</h3>
+                </div>
+                <div className="p-2">
+                    <Link to="/cadastrar-itenscompra" className="btn btn-outline-success btn-sm">Cadastrar Itens</Link>
+                </div>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                            <th>CompraId</th>
+                            <th>ProdutoId</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {item.map(item => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.data}</td>
-                                <td>{item.ClienteId}</td>
+                                <td>{item.quantidade}</td>
+                                <td>{item.valor}</td>
+                                <td>{item.CompraId}</td>
+                                <td>{item.ProdutoId}</td>
                             </tr>
                         ))}
                     </tbody>

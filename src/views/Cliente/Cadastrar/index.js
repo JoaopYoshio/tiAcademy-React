@@ -45,6 +45,15 @@ export const CadastrarCli = () => {
         clienteDesde: '',
     });
 
+    const limpar = () => setCliente({
+        nome: '',
+        endereco: '',
+        cidade: '',
+        uf: '',
+        nascimento: '',
+        clienteDesde: ''
+    });
+
     const [status, setStatus] = useState({
         type: '',
         message: ''
@@ -141,6 +150,9 @@ export const CadastrarCli = () => {
 
                 <Button type="submit" outline color="success">
                     Cadastrar
+                </Button>
+                <Button type="reset" outline color="danger" onClick={limpar} className="m-2">
+                    Limpar
                 </Button>
             </Form>
         </Container>

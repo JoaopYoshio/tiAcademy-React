@@ -29,6 +29,28 @@ export const ListarProd = () => {
             });
     };
 
+    const excluirProduto = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluirproduto/" + id , { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getProdutos();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
     useEffect(() => {
         getProdutos();
     }, [])
@@ -66,18 +88,13 @@ export const ListarProd = () => {
                                 <td>{item.nome}</td>
                                 <td>{item.descricao}</td>
                                 <td className="texte-center">
-                                    <Link to={"listar-compra/" + item.id}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar
-                                    </Link>
                                     <Link to={"editar-produto/" + item.id}
                                         className="btn btn-outline-warning btn-sm">
                                         Editar
                                     </Link>
-                                    <Link to={"excluir-produto/" + item.id}
-                                        className="btn btn-outline-danger btn-sm">
+                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirProduto(item.id)}>
                                         Excluir
-                                    </Link>
+                                    </span>
                                 </td>
                             </tr>
                         ))}

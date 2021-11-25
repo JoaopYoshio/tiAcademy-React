@@ -39,6 +39,11 @@ export const CadastrarProd = () => {
         descricao: ''
     });
 
+    const limpar = () => ({
+        nome: '',
+        descricao:''
+    })
+
     const [status, setStatus] = useState({
         type: '',
         message: ''
@@ -91,6 +96,9 @@ export const CadastrarProd = () => {
 
                 <Button type="submit" outline color="success">
                     Cadastrar
+                </Button>
+                <Button type="reset" outline color="danger" onClick={limpar} className="m-2">
+                    Limpar
                 </Button>
             </Form>
         </Container>

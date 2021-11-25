@@ -62,6 +62,9 @@ export const PedidosCliente = (props) => {
                     <div className="p-2">
                         <Link to="/listar-pedidos" className="btn btn-outline-primary btn-sm">Pedido</Link>
                     </div>
+                    <div className="p-2">
+                        <Link to="/listar-compra" className="btn btn-outline-primary btn-sm">Compra</Link>
+                    </div>
                 </div>
                 {status.type === 'error' ?
                     <Alert color="danger">

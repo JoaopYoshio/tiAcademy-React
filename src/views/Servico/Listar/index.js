@@ -29,6 +29,28 @@ export const ListarServ = () => {
             });
     };
 
+    const excluirServico = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluirservico/" + id , { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getServicos();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
     useEffect(() => {
         getServicos();
     }, [])
@@ -66,18 +88,13 @@ export const ListarServ = () => {
                                 <td>{item.nome}</td>
                                 <td>{item.descricao}</td>
                                 <td className="texte-center">
-                                    <Link to={"listar-pedido/" + item.id}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar
-                                    </Link>
                                     <Link to={"editar-servico/" + item.id}
                                         className="btn btn-outline-warning btn-sm">
                                         Editar
                                     </Link>
-                                    <Link to={"excluir-servico/" + item.id}
-                                        className="btn btn-outline-danger btn-sm">
+                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirServico(item.id)}>
                                         Excluir
-                                    </Link>
+                                    </span>
                                 </td>
                             </tr>
                         ))}
