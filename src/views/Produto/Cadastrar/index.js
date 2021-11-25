@@ -22,7 +22,7 @@ export const CadastrarProd = () => {
                         type: 'error',
                         message: response.data.message
                     })
-                }else{
+                } else {
                     setStatus({
                         type: 'success',
                         message: response.data.message
@@ -41,7 +41,7 @@ export const CadastrarProd = () => {
 
     const limpar = () => ({
         nome: '',
-        descricao:''
+        descricao: ''
     })
 
     const [status, setStatus] = useState({
@@ -67,8 +67,8 @@ export const CadastrarProd = () => {
 
             <hr className="m-1"></hr>
 
-            {status.type === 'error' ? <Alert color="danger">{status.message}</Alert>: ""}
-            {status.type === 'success' ? <Alert color="success">{status.message}</Alert>: ""}
+            {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+            {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
             <Form className="p-2" onSubmit={cadServico}>
                 <FormGroup className="p2">

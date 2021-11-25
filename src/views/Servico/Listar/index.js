@@ -35,7 +35,7 @@ export const ListarServ = () => {
             'Content-Type': 'application/json'
         };
 
-        await axios.delete(api + "/excluirservico/" + id , { headers })
+        await axios.delete(api + "/excluirservico/" + id, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',

@@ -6,7 +6,7 @@ export const Home = () => {
             <Container>
                 <div className="d-flex">
                     <div className="m-auto">
-                    <div className="p-2"><h1>Home</h1></div>
+                        <div className="p-2"><h1>Home</h1></div>
                     </div>
                     <div className="m-auto d-flex">
                         <div className="p-2">

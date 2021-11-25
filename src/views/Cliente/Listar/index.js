@@ -35,7 +35,7 @@ export const ListarCli = () => {
             'Content-Type': 'application/json'
         };
 
-        await axios.delete(api + "/excluircliente/" + id , { headers })
+        await axios.delete(api + "/excluircliente/" + id, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',

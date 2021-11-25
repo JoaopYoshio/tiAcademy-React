@@ -48,7 +48,7 @@ export const ListarPed = () => {
             'Content-Type': 'application/json'
         };
 
-        await axios.delete(api + "/excluirpedido/" + id , { headers })
+        await axios.delete(api + "/excluirpedido/" + id, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',
@@ -63,7 +63,7 @@ export const ListarPed = () => {
                 })
             })
     }
-    
+
 
     useEffect(() => {
         getPedidos();

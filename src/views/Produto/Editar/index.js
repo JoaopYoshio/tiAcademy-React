@@ -94,7 +94,7 @@ export const EditarProd = (props) => {
                             name="nome"
                             placeholder="Nome do Cliente"
                             type="text"
-                            defaultValue= {produto.nome}
+                            defaultValue={produto.nome}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -106,12 +106,12 @@ export const EditarProd = (props) => {
                             name="endereco"
                             placeholder="Endereço do Cliente"
                             type="text"
-                            defaultValue= {produto.descricao}
+                            defaultValue={produto.descricao}
                             onChange={valorInput}
                         />
                     </FormGroup>
-                   
-                    <Button type ="submit" outline color="success">
+
+                    <Button type="submit" outline color="success">
                         Salvar
                     </Button>
 

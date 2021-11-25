@@ -94,7 +94,7 @@ export const EditarServ = (props) => {
                             name="nome"
                             placeholder="Nome do Cliente"
                             type="text"
-                            defaultValue= {servico.nome}
+                            defaultValue={servico.nome}
                             onChange={valorInput}
                         />
                     </FormGroup>
@@ -106,12 +106,12 @@ export const EditarServ = (props) => {
                             name="descricao"
                             placeholder="Endereço do Cliente"
                             type="text"
-                            defaultValue= {servico.descricao}
+                            defaultValue={servico.descricao}
                             onChange={valorInput}
                         />
                     </FormGroup>
-                   
-                    <Button type ="submit" outline color="success">
+
+                    <Button type="submit" outline color="success">
                         Salvar
                     </Button>
 

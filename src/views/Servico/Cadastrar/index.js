@@ -23,7 +23,7 @@ export const CadastrarServ = () => {
                         type: 'error',
                         message: response.data.message
                     })
-                }else{
+                } else {
                     setStatus({
                         type: 'success',
                         message: response.data.message
@@ -68,8 +68,8 @@ export const CadastrarServ = () => {
 
             <hr className="m-1"></hr>
 
-            {status.type === 'error' ? <Alert color="danger">{status.message}</Alert>: ""}
-            {status.type === 'success' ? <Alert color="success">{status.message}</Alert>: ""}
+            {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+            {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
             <Form className="p-2" onSubmit={cadServico}>
                 <FormGroup className="p2">

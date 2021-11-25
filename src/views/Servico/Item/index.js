@@ -10,7 +10,7 @@ export const Item = (props) => {
 
     const [data, setData] = useState([]);
 
-    const[id] = useState(props.match.params.id)
+    const [id] = useState(props.match.params.id)
 
     const [status, setStatus] = useState({
         type: '',
@@ -18,7 +18,7 @@ export const Item = (props) => {
     });
 
     const getItens = async () => {
-        await axios.get(api + "/servico/"+id+"/pedidos")
+        await axios.get(api + "/servico/" + id + "/pedidos")
             .then((response) => {
                 console.log(response.data.item);
                 setData(response.data.item)

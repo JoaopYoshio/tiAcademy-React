@@ -35,7 +35,7 @@ export const ListarProd = () => {
             'Content-Type': 'application/json'
         };
 
-        await axios.delete(api + "/excluirproduto/" + id , { headers })
+        await axios.delete(api + "/excluirproduto/" + id, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',
