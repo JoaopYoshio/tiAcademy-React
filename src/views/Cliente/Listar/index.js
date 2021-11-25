@@ -39,7 +39,7 @@ export const ListarCli = () => {
             .then((response) => {
                 setStatus({
                     type: 'success',
-                    message: response.data.message
+                    message: "Cliente excluído com sucesso!"
                 });
                 getClientes();
             })
@@ -67,13 +67,9 @@ export const ListarCli = () => {
                     <div className="m-auto p-2">
                         <Link to="/cadastrar-cliente" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
-                    {status.type === 'error' ?
-                        <Alert color="danger">
-                            {status.message}
-                        </Alert> : ""}
                 </div>
-
-
+                {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+                {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
                 <Table striped>
                     <thead>
                         <tr>
@@ -99,15 +95,15 @@ export const ListarCli = () => {
                                 <td>{cli.clienteDesde}</td>
                                 <td className="texte-center">
                                     <Link to={"/pedidos-cliente/" + cli.id}
-                                        className="btn btn-outline-primary btn-sm">
+                                        className="btn btn-outline-primary btn-sm m-1">
                                         Consultar
                                     </Link>
 
                                     <Link to={"/editar-cliente/" + cli.id}
-                                        className="btn btn-outline-warning btn-sm">
+                                        className="btn btn-outline-warning btn-sm m-1">
                                         Editar
                                     </Link>
-                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirCliente(cli.id)}>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirCliente(cli.id)}>
                                         Excluir
                                     </span>
                                 </td>

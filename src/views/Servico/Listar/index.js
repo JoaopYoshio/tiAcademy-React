@@ -66,11 +66,10 @@ export const ListarServ = () => {
                     <div className=" m-auto p-2">
                         <Link to="cadastrar-servico" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
-                    {status.type === 'error' ?
-                        <Alert color="danger">
-                            {status.message}
-                        </Alert> : ""}
                 </div>
+
+                {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+                {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
                 <Table striped>
                     <thead>
@@ -89,10 +88,10 @@ export const ListarServ = () => {
                                 <td>{item.descricao}</td>
                                 <td className="texte-center">
                                     <Link to={"editar-servico/" + item.id}
-                                        className="btn btn-outline-warning btn-sm">
+                                        className="btn btn-outline-warning btn-sm m-1">
                                         Editar
                                     </Link>
-                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirServico(item.id)}>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirServico(item.id)}>
                                         Excluir
                                     </span>
                                 </td>

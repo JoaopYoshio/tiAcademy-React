@@ -63,6 +63,28 @@ export const ListarPed = () => {
                 })
             })
     }
+    const excluirItem = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluiritempedido/" + id, { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getItens();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
 
 
     useEffect(() => {
@@ -77,10 +99,8 @@ export const ListarPed = () => {
                 <div>
                     <h1>Visualizar informações dos pedidos</h1>
                 </div>
-                {status.type === 'error' ?
-                    <Alert color="danger">
-                        {status.message}
-                    </Alert> : ""}
+                {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+                {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
                 <hr className="m-1"></hr>
 
                 <div>
@@ -105,7 +125,11 @@ export const ListarPed = () => {
                                 <td>{ped.ClienteId}</td>
                                 <td>{ped.data}</td>
                                 <td className="texte-center">
-                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirPedido(ped.id)}>
+                                    <Link to={"/editar-pedido/" + ped.id}
+                                        className="btn btn-outline-warning btn-sm m-1">
+                                        Editar
+                                    </Link>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirPedido(ped.id)}>
                                         Excluir
                                     </span>
                                 </td>
@@ -126,6 +150,7 @@ export const ListarPed = () => {
                             <th>Valor</th>
                             <th>PedidoId</th>
                             <th>ServicoId</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,6 +160,15 @@ export const ListarPed = () => {
                                 <td>{item.valor}</td>
                                 <td>{item.PedidoId}</td>
                                 <td>{item.ServicoId}</td>
+                                <td>
+                                    <Link to={"/editar-itempedido/" + item.PedidoId}
+                                        className="btn btn-outline-warning btn-sm m-1">
+                                        Editar
+                                    </Link>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirItem(item.PedidoId)}>
+                                        Excluir
+                                    </span>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

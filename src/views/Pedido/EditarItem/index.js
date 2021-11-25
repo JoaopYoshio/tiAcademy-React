@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import { Alert, Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarProd = (props) => {
+export const EditarItemPedido = (props) => {
 
     console.log(props.match.params.id)
 
     const [id] = useState(props.match.params.id)
 
-    const [produto, setProduto] = useState({
-        id:'',
-        nome: '',
-        descricao: ''
+    const [item, setItem] = useState({
+        PedidoId: '',
+        quantidade: '',
+        valor: ''
     });
 
-    const valorInput = e => setProduto({
-        ...produto,
+    const valorInput = e => setItem({
+        ...item,
         [e.target.name]: e.target.value
     });
 
@@ -26,11 +26,11 @@ export const EditarProd = (props) => {
         message: ''
     });
 
-    const getProduto = async () => {
-        await axios.get(api + "/produto/" + id)
+    const getItem = async () => {
+        await axios.get(api + "/itempedido/" + id)
             .then((response) => {
-                console.log(response.data.prod)
-                setProduto(response.data.prod)
+                console.log(response.data.item[0])
+                setItem(response.data.item[0])
             })
             .catch(() => {
                 setStatus({
@@ -40,7 +40,7 @@ export const EditarProd = (props) => {
             });
     };
 
-    const editProduto = async e => {
+    const editItem = async e => {
         e.preventDefault();
         console.log("Editar")
 
@@ -48,7 +48,7 @@ export const EditarProd = (props) => {
             'Content-Type': 'application/json'
         };
 
-        await axios.put(api + "/produto/" + id + "/editar", produto, { headers })
+        await axios.put(api + "/pedidos/" + id + "/editaritem", item, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',
@@ -64,7 +64,7 @@ export const EditarProd = (props) => {
     }
 
     useEffect(() => {
-        getProduto();
+        getItem();
     }, [])
 
 
@@ -73,11 +73,11 @@ export const EditarProd = (props) => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1>Editar Produto</h1>
+                        <h1>Editar Item Pedido</h1>
                     </div>
                     <div className="m-auto p-2">
-                        <Link to="/listar-produto" className="btn btn-outline-primary btn-sm">
-                            Produto
+                        <Link to="/listar-pedidos" className="btn btn-outline-primary btn-sm">
+                            Pedido
                         </Link>
                     </div>
                 </div>
@@ -86,41 +86,42 @@ export const EditarProd = (props) => {
                 {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
-                <Form className="p-2" onSubmit={editProduto}>
+                <Form className="p-2" onSubmit={editItem}>
                 <FormGroup className="p2">
                         <Label>
-                            ID do produto
+                            Pedido ID
                         </Label>
                         <Input
-                            name="id"
-                            placeholder="ID do produto"
+                            name="PedidoId"
+                            placeholder="Id do Pedido"
                             type="text"
-                            defaultValue={produto.id}
-                            onChange={valorInput}
+                            defaultValue={item.PedidoId}
                             readOnly="readonly"
+                            onChange={valorInput}
+
                         />
                     </FormGroup>
                     <FormGroup className="p2">
                         <Label>
-                            Nome
+                            Quantidade
                         </Label>
                         <Input
-                            name="nome"
-                            placeholder="Nome do Cliente"
+                            name="quantidade"
+                            placeholder="Quantidade"
                             type="text"
-                            defaultValue={produto.nome}
+                            defaultValue={item.quantidade}
                             onChange={valorInput}
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <Label className="p-2">
-                            Descrição
+                    <FormGroup className="p2">
+                        <Label>
+                            Valor
                         </Label>
                         <Input
-                            name="descricao"
-                            placeholder="Descrição do produto"
+                            name="valor"
+                            placeholder="Valor do item"
                             type="text"
-                            defaultValue={produto.descricao}
+                            defaultValue={item.valor}
                             onChange={valorInput}
                         />
                     </FormGroup>

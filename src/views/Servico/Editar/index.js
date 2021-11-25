@@ -11,6 +11,7 @@ export const EditarServ = (props) => {
     const [id] = useState(props.match.params.id)
 
     const [servico, setServico] = useState({
+        id:'',
         nome: '',
         descricao: ''
     });
@@ -86,6 +87,19 @@ export const EditarServ = (props) => {
                 {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
                 <Form className="p-2" onSubmit={editServico}>
+                <FormGroup className="p2">
+                        <Label>
+                            ID do Serviço
+                        </Label>
+                        <Input
+                            name="id"
+                            placeholder="Id do serviço"
+                            type="text"
+                            defaultValue={servico.id}
+                            onChange={valorInput}
+                            readOnly="readonly"
+                        />
+                    </FormGroup>
                     <FormGroup className="p2">
                         <Label>
                             Nome

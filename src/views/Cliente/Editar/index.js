@@ -11,6 +11,7 @@ export const EditarCli = (props) => {
     const [id] = useState(props.match.params.id)
 
     const [cliente, setCliente] = useState({
+        id:'',
         nome: '',
         endereco: '',
         cidade: '',
@@ -42,27 +43,6 @@ export const EditarCli = (props) => {
                 })
             });
     };
-
-    const excluirCliente = async () => {
-
-        const headers = {
-            'Content-Type': 'application/json'
-        };
-
-        await axios.delete(api + "/excluircliente/" + id, { headers })
-            .then((response) => {
-                setStatus({
-                    type: 'success',
-                    message: response.data.message
-                });
-            })
-            .catch(() => {
-                setStatus({
-                    type: "error",
-                    message: "Erro: sem conexão com a API."
-                })
-            })
-    }
 
     const editCliente = async e => {
         e.preventDefault();
@@ -111,6 +91,19 @@ export const EditarCli = (props) => {
                 {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
                 <Form className="p-2" onSubmit={editCliente}>
+                <FormGroup className="p2">
+                        <Label>
+                            ID
+                        </Label>
+                        <Input
+                            name="id"
+                            placeholder="ID do Cliente"
+                            type="text"
+                            defaultValue={cliente.id}
+                            onChange={valorInput}
+                            readOnly="readonly"
+                        />
+                    </FormGroup>
                     <FormGroup className="p2">
                         <Label>
                             Nome
@@ -183,12 +176,7 @@ export const EditarCli = (props) => {
                             onChange={valorInput}
                         />
                     </FormGroup>
-
-
-                    <Button type="button" outline color="danger" onClick={excluirCliente}>
-                        Excluir
-                    </Button>
-
+                    
                     <Button type="submit" outline color="success">
                         Salvar
                     </Button>

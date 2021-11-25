@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 import { Alert, Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { api } from "../../../config";
 
-export const EditarProd = (props) => {
+export const EditarPed = (props) => {
 
     console.log(props.match.params.id)
 
     const [id] = useState(props.match.params.id)
 
-    const [produto, setProduto] = useState({
-        id:'',
-        nome: '',
-        descricao: ''
+    const [pedido, setPedido] = useState({
+        data: ''
     });
 
-    const valorInput = e => setProduto({
-        ...produto,
+    const valorInput = e => setPedido({
+        ...pedido,
         [e.target.name]: e.target.value
     });
 
@@ -26,11 +24,11 @@ export const EditarProd = (props) => {
         message: ''
     });
 
-    const getProduto = async () => {
-        await axios.get(api + "/produto/" + id)
+    const getPedido = async () => {
+        await axios.get(api + "/pedido/" + id)
             .then((response) => {
-                console.log(response.data.prod)
-                setProduto(response.data.prod)
+                console.log(response.data.ped)
+                setPedido(response.data.ped)
             })
             .catch(() => {
                 setStatus({
@@ -40,7 +38,7 @@ export const EditarProd = (props) => {
             });
     };
 
-    const editProduto = async e => {
+    const editPedido = async e => {
         e.preventDefault();
         console.log("Editar")
 
@@ -48,7 +46,7 @@ export const EditarProd = (props) => {
             'Content-Type': 'application/json'
         };
 
-        await axios.put(api + "/produto/" + id + "/editar", produto, { headers })
+        await axios.put(api + "/pedido/" + id + "/editar", pedido, { headers })
             .then((response) => {
                 setStatus({
                     type: 'success',
@@ -64,7 +62,7 @@ export const EditarProd = (props) => {
     }
 
     useEffect(() => {
-        getProduto();
+        getPedido();
     }, [])
 
 
@@ -73,11 +71,11 @@ export const EditarProd = (props) => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1>Editar Produto</h1>
+                        <h1>Editar Pedido</h1>
                     </div>
                     <div className="m-auto p-2">
-                        <Link to="/listar-produto" className="btn btn-outline-primary btn-sm">
-                            Produto
+                        <Link to="/listar-pedidos" className="btn btn-outline-primary btn-sm">
+                            Pedido
                         </Link>
                     </div>
                 </div>
@@ -86,41 +84,16 @@ export const EditarProd = (props) => {
                 {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
 
-                <Form className="p-2" onSubmit={editProduto}>
-                <FormGroup className="p2">
-                        <Label>
-                            ID do produto
-                        </Label>
-                        <Input
-                            name="id"
-                            placeholder="ID do produto"
-                            type="text"
-                            defaultValue={produto.id}
-                            onChange={valorInput}
-                            readOnly="readonly"
-                        />
-                    </FormGroup>
+                <Form className="p-2" onSubmit={editPedido}>
                     <FormGroup className="p2">
                         <Label>
-                            Nome
+                            Data
                         </Label>
                         <Input
-                            name="nome"
-                            placeholder="Nome do Cliente"
-                            type="text"
-                            defaultValue={produto.nome}
-                            onChange={valorInput}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label className="p-2">
-                            Descrição
-                        </Label>
-                        <Input
-                            name="descricao"
-                            placeholder="Descrição do produto"
-                            type="text"
-                            defaultValue={produto.descricao}
+                            name="data"
+                            placeholder="Data da compra"
+                            type="date"
+                            defaultValue={pedido.data}
                             onChange={valorInput}
                         />
                     </FormGroup>

@@ -66,12 +66,9 @@ export const ListarProd = () => {
                     <div className=" m-auto p-2">
                         <Link to="cadastrar-produto" className="btn btn-outline-primary btn-sm">Cadastrar</Link>
                     </div>
-                    {status.type === 'error' ?
-                        <Alert color="danger">
-                            {status.message}
-                        </Alert> : ""}
                 </div>
-
+                {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
+                {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ""}
                 <Table striped>
                     <thead>
                         <tr>
@@ -88,11 +85,11 @@ export const ListarProd = () => {
                                 <td>{item.nome}</td>
                                 <td>{item.descricao}</td>
                                 <td className="texte-center">
-                                    <Link to={"editar-produto/" + item.id}
-                                        className="btn btn-outline-warning btn-sm">
+                                    <Link to={"/editar-produto/" + item.id}
+                                        className="btn btn-outline-warning btn-sm m-1">
                                         Editar
                                     </Link>
-                                    <span className="btn btn-outline-danger btn-sm" onClick={() => excluirProduto(item.id)}>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirProduto(item.id)}>
                                         Excluir
                                     </span>
                                 </td>

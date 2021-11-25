@@ -18,33 +18,78 @@ export const PedidosCliente = (props) => {
         message: ''
     });
 
+    const excluirPedido = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluirpedido/" + id, { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getPedidos();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
+    const getPedidos = async () => {
+        await axios.get(api + "/cliente/" + id + "/pedidos")
+            .then((response) => {
+                console.log(response.data.peds)
+                setData(response.data.peds)
+            })
+            .catch(() => {
+                setStatus({
+                    type: 'error',
+                    message: 'Erro: sem conexão com a API.'
+                })
+            });
+    }
+    const getCompras = async () => {
+        await axios.get(api + "/cliente/" + id + "/compras")
+            .then((response) => {
+                console.log(response.data.compras)
+                setCompra(response.data.compras)
+            })
+            .catch(() => {
+                setStatus({
+                    type: 'error',
+                    message: 'Erro: sem conexão com a API.'
+                })
+            });
+    }
+
+    const excluirCompra = async (id) => {
+
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        await axios.delete(api + "/excluircompra/" + id, { headers })
+            .then((response) => {
+                setStatus({
+                    type: 'success',
+                    message: response.data.message
+                });
+                getCompras();
+            })
+            .catch(() => {
+                setStatus({
+                    type: "error",
+                    message: "Erro: sem conexão com a API."
+                })
+            })
+    }
+
     useEffect(() => {
-        const getPedidos = async () => {
-            await axios.get(api + "/cliente/" + id + "/pedidos")
-                .then((response) => {
-                    console.log(response.data.peds)
-                    setData(response.data.peds)
-                })
-                .catch(() => {
-                    setStatus({
-                        type: 'error',
-                        message: 'Erro: sem conexão com a API.'
-                    })
-                });
-        }
-        const getCompras = async () => {
-            await axios.get(api + "/cliente/" + id + "/compras")
-                .then((response) => {
-                    console.log(response.data.compras)
-                    setCompra(response.data.compras)
-                })
-                .catch(() => {
-                    setStatus({
-                        type: 'error',
-                        message: 'Erro: sem conexão com a API.'
-                    })
-                });
-        }
         getCompras();
         getPedidos();
     }, [id])
@@ -88,15 +133,12 @@ export const PedidosCliente = (props) => {
                                 <td>{ped.id}</td>
                                 <td>{ped.data}</td>
                                 <td className="texte-center">
-                                    <Link to={"/"}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar</Link>
-                                    <Link to={"/"}
-                                        className="btn btn-outline-warning btn-sm">
+                                    <Link to={"/editar-pedido/" + ped.id}
+                                        className="btn btn-outline-warning btn-sm m-1">
                                         Editar</Link>
-                                    <Link to={"/"}
-                                        className="btn btn-outline-danger btn-sm">
-                                        Excluir</Link>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirPedido(ped.id)}>
+                                        Excluir
+                                    </span>
                                 </td>
                             </tr>
                         ))}
@@ -119,15 +161,12 @@ export const PedidosCliente = (props) => {
                                 <td>{comp.id}</td>
                                 <td>{comp.data}</td>
                                 <td className="texte-center">
-                                    <Link to={"/"}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar</Link>
-                                    <Link to={"/"}
-                                        className="btn btn-outline-warning btn-sm">
+                                    <Link to={"/editar-compra/" + comp.id}
+                                        className="btn btn-outline-warning btn-sm m-1">
                                         Editar</Link>
-                                    <Link to={"/"}
-                                        className="btn btn-outline-danger btn-sm">
-                                        Excluir</Link>
+                                    <span className="btn btn-outline-danger btn-sm m-1" onClick={() => excluirCompra(comp.id)}>
+                                        Excluir
+                                    </span>
                                 </td>
                             </tr>
                         ))}
